@@ -16,9 +16,9 @@ DialogQualityManager::DialogQualityManager(QWidget *parent) :
     connect(ui->checkBoxOntop,&QCheckBox::toggled,this,[=](bool checked){
         QWindow *pWin = windowHandle() ;
         if(checked)
-            pWin->setFlags(windowFlags() | Qt::WindowStaysOnTopHint) ;
+            pWin->setFlags(pWin->flags() | Qt::WindowStaysOnTopHint) ;
         else
-            pWin->setFlags(windowFlags() & ~Qt::WindowStaysOnTopHint) ;
+            pWin->setFlags(pWin->flags() & ~Qt::WindowStaysOnTopHint) ;
         show() ;
     }) ;
 
