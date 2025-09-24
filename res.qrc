@@ -1,0 +1,25 @@
+<RCC>
+    <qresource prefix="/">
+        <file>images/bg.png</file>
+        <file>images/MWCentralWidgetBG.png</file>
+        <file>images/MWCentralWidgetButtonBG.png</file>
+        <file>images/MWToolBarAdjustIcon.png</file>
+        <file>images/MWToolBarAdjustIconForTitle.png</file>
+        <file>images/MWToolBarBrightnessIcon.png</file>
+        <file>images/MWToolBarBrightnessIconForTitle.png</file>
+        <file>images/MWToolBarLightBoardFlashIcon.png</file>
+        <file>images/MWToolBarLightBoardFlashIconForTitle.png</file>
+        <file>images/MWToolBarPictureControlIcon.png</file>
+        <file>images/MWToolBarPictureControlIconForTitle.png</file>
+        <file>images/MWToolBarScreenConfigIcon.png</file>
+        <file>images/MWToolBarScreenConfigIconForTitle.png</file>
+        <file>images/MWToolBarTestToolIcon.png</file>
+        <file>images/MWToolBarTestToolIconForTitle.png</file>
+        <file>images/MWWindowIcon.png</file>
+        <file>images/TCL.png</file>
+        <file>images/BoxChecked.png</file>
+        <file>images/BoxUncheck.png</file>
+        <file>images/Imagedown.png</file>
+        <file>images/down-arrow.png</file>
+    </qresource>
+</RCC>
