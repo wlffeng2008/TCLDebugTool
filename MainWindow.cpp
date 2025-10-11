@@ -26,7 +26,7 @@ MainWindow::MainWindow(QWidget *parent)
     QString strBuild ;
 #ifdef _MSC_VER
 
-    QString strName ;
+    QString strName = "MSVC2017";
 #if _MSC_VER >= 1930
     strName = "MSVC2022";
 #elif _MSC_VER >= 1920
@@ -35,7 +35,7 @@ MainWindow::MainWindow(QWidget *parent)
     strName = "MSVC2017";
 #endif
 
-    strBuild = QString("使用 %1 或更高版本编译, 版本号: %2").arg(strName,_MSC_VER)  ;
+    strBuild = QString("使用 %1 或更高版本编译, 版本号: %2").arg(strName).arg(_MSC_VER)  ;
 
 #else
     strBuild = "非 MSVC 编译(如 MinGW, GCC 等)";
@@ -43,7 +43,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     QString strTitle = QString("TCL Debug Tool (V2.12) -- [Build: %1] [By Qt%2] -- [%3]").arg(__TIMESTAMP__,QT_VERSION_STR,strBuild) ;
     setWindowTitle(strTitle);
-
+    qDebug() << strTitle;
     {
         // Document xlsx;
         // xlsx.write("A1", "Hello QtXlsx!"); // current file is utf-8 character-set.
