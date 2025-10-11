@@ -8,6 +8,9 @@
 
 int main(int argc, char *argv[])
 {
+    QApplication::setHighDpiScaleFactorRoundingPolicy(
+        Qt::HighDpiScaleFactorRoundingPolicy::PassThrough  // 允许非整数倍缩放
+        );
     QApplication a(argc, argv);
     //QApplication::setStyle("Fusion");
     a.setStyleSheet(
@@ -74,7 +77,6 @@ int main(int argc, char *argv[])
         QMessageBox QLabel#qt_msgboxex_icon_label{ min-width: 32px; min-height: 32px; max-width: 32px; max-height: 32px;qproperty-alignment: AlignTop;}
         QMessageBox QPushButton { /*background-color: #303CCF; border-radius: 4px; color:white;*/ min-width: 80px;min-height: 24px;}
 
-        /* 文本和指示器间距 */
         QRadioButton { spacing: 5px; color: #333333; }
         QRadioButton::indicator {
             width: 14px;
@@ -190,13 +192,9 @@ padding 3px ;
 */
     //tcl_log::LogInit() ;
 
-    QApplication::setHighDpiScaleFactorRoundingPolicy(
-        Qt::HighDpiScaleFactorRoundingPolicy::PassThrough  // 允许非整数倍缩放
-    );
-
     QLocale::setDefault(QLocale(QLocale::Chinese,QLocale::China)) ;
     QTranslator translator ;
-    bool bLoad = translator.load("qt_zh_TW.qm", QLibraryInfo::location(QLibraryInfo::TranslationsPath)) ;
+    bool bLoad = translator.load("qt_zh_TW.qm", QLibraryInfo::path(QLibraryInfo::TranslationsPath)) ;
     if(bLoad)
     {
         qDebug() << "installTranslator";
