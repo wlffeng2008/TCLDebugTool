@@ -8,6 +8,10 @@
 
 int main(int argc, char *argv[])
 {
+    QApplication::setHighDpiScaleFactorRoundingPolicy(
+        Qt::HighDpiScaleFactorRoundingPolicy::PassThrough  // 允许非整数倍缩放
+        );
+
     QApplication a(argc, argv);
     //QApplication::setStyle("Fusion");
     a.setStyleSheet(
@@ -72,9 +76,8 @@ int main(int argc, char *argv[])
         QMessageBox {min-width: 500px; min-height: 250px;}
         QMessageBox QLabel#qt_msgbox_label{min-width: 450px; min-height: 120px; max-width: 450px; max-height: 520px; qproperty-alignment: AlignLeft; white-space: pre-wrap;font: bold 12px 微软雅黑;}
         QMessageBox QLabel#qt_msgboxex_icon_label{ min-width: 32px; min-height: 32px; max-width: 32px; max-height: 32px;qproperty-alignment: AlignTop;}
-        QMessageBox QPushButton { /*background-color: #303CCF; border-radius: 4px; color:white;*/ min-width: 80px;min-height: 24px;}
+        QMessageBox QPushButton { min-width: 80px;min-height: 24px;}
 
-        /* 文本和指示器间距 */
         QRadioButton { spacing: 5px; color: #333333; }
         QRadioButton::indicator {
             width: 14px;
@@ -150,6 +153,8 @@ int main(int argc, char *argv[])
         QSpinBox {border: 1px solid gray; border-radius: 4px; }
         QSpinBox:focus{ border: 1px solid #50b7c1; border-radius: 4px;  background-color: rgb(226, 249, 255);}
 
+        QFrame{background-color:transparent;}
+
         QGroupBox * { font-size: 12px; font-weight: bold; }
 
     )");
@@ -189,10 +194,6 @@ padding 3px ;
 
 */
     //tcl_log::LogInit() ;
-
-    QApplication::setHighDpiScaleFactorRoundingPolicy(
-        Qt::HighDpiScaleFactorRoundingPolicy::PassThrough  // 允许非整数倍缩放
-    );
 
     QLocale::setDefault(QLocale(QLocale::Chinese,QLocale::China)) ;
     QTranslator translator ;
