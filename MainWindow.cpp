@@ -21,9 +21,27 @@ MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
-    ui->setupUi(this);
+    ui->setupUi(this) ;
 
-    QString strTitle = QString("TCL Debug Tool (V2.12) -- [Build: %1] [By Qt%2]").arg(__TIMESTAMP__,QT_VERSION_STR);
+    QString strBuild ;
+#ifdef _MSC_VER
+
+    QString strName ;
+#if _MSC_VER >= 1930
+    strName = "MSVC2022";
+#elif _MSC_VER >= 1920
+    strName = "MSVC2019";
+#else
+    strName = "MSVC2017";
+#endif
+
+    strBuild = QString("使用 %1 或更高版本编译, 版本号: %2").arg(strName,_MSC_VER)  ;
+
+#else
+    strBuild = "非 MSVC 编译(如 MinGW, GCC 等)";
+#endif
+
+    QString strTitle = QString("TCL Debug Tool (V2.12) -- [Build: %1] [By Qt%2] -- [%3]").arg(__TIMESTAMP__,QT_VERSION_STR,strBuild) ;
     setWindowTitle(strTitle);
 
     {
