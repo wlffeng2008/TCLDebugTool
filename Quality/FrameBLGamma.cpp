@@ -24,6 +24,8 @@ FrameBLGamma::FrameBLGamma(QWidget *parent) :
 
     ui->tableView->setAutoFillBackground(true);
 
+    ui->tableView->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch) ;
+
     ui->tableView->setColumnWidth(0,70);
     ui->tableView->setColumnWidth(1,59);
     ui->tableView->setFocusPolicy(Qt::NoFocus) ;
