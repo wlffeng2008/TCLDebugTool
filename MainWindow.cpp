@@ -27,6 +27,7 @@ MainWindow::MainWindow(QWidget *parent)
 #ifdef _MSC_VER
 
     QString strName = "MSVC2017";
+
 #if _MSC_VER >= 1930
     strName = "MSVC2022";
 #elif _MSC_VER >= 1920
