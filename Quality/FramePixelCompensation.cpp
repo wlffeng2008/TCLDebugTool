@@ -53,7 +53,7 @@ FramePixelCompensation::FramePixelCompensation(QWidget *parent) :
 
         ui->tableViewGrid->horizontalHeader()->hide();
         ui->tableViewGrid->verticalHeader()->hide();
-
+        //ui->tableViewGrid->setStyleSheet("QTableView{ border-right: 1px solid transparent;border-bottom: 1px solid transparent;}");
         for(int i=0; i<11; i++)
         {
             for(int j=0; j<11; j++)
