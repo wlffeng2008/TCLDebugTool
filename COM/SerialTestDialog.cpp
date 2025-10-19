@@ -100,6 +100,7 @@ SerialTestDialog::SerialTestDialog(QWidget *parent)
     g_pCOMDlg = this ;
 
     g_set = new QSettings(QCoreApplication::applicationDirPath() + "/DebugToolCOM.ini",QSettings::IniFormat) ;
+    ui->pushButtonLog->setIcon(QApplication::style()->standardIcon(QStyle::SP_MessageBoxInformation)) ;
 
     m_pLogDlg = new DialogLogView(nullptr) ;
 

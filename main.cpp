@@ -60,10 +60,10 @@ int main(int argc, char *argv[])
         QSlider::handle:pressed { background: #E0E0E0; border-color: #2D7FDD; }
 
         QPushButton {
-                background-color: #6C9F50;
+                background-color: #2D7FDD;
                 border-radius: 8px;
                 color: white;
-                border: 2px solid gray;
+                border: 1px solid #6C9F50;
                 padding: 2px 2px;
                 min-width: 60px;
                 min-height: 16px; }
@@ -197,7 +197,7 @@ padding 3px ;
 
     QLocale::setDefault(QLocale(QLocale::Chinese,QLocale::China)) ;
     QTranslator translator ;
-    bool bLoad = translator.load("qt_zh_TW.qm", QLibraryInfo::location(QLibraryInfo::TranslationsPath)) ;
+    bool bLoad = translator.load("qt_zh_TW.qm", QLibraryInfo::path(QLibraryInfo::TranslationsPath)) ;
     if(bLoad)
     {
         qDebug() << "installTranslator";
