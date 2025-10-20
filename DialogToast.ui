@@ -21,8 +21,8 @@
     <rect>
      <x>70</x>
      <y>5</y>
-     <width>511</width>
-     <height>41</height>
+     <width>520</width>
+     <height>40</height>
     </rect>
    </property>
    <property name="font">
@@ -34,10 +34,29 @@
     <string>提示信息！</string>
    </property>
    <property name="alignment">
-    <set>Qt::AlignCenter</set>
+    <set>Qt::AlignmentFlag::AlignCenter</set>
    </property>
    <property name="wordWrap">
     <bool>true</bool>
+   </property>
+  </widget>
+  <widget class="QLabel" name="labelIcon">
+   <property name="geometry">
+    <rect>
+     <x>6</x>
+     <y>5</y>
+     <width>40</width>
+     <height>40</height>
+    </rect>
+   </property>
+   <property name="minimumSize">
+    <size>
+     <width>40</width>
+     <height>40</height>
+    </size>
+   </property>
+   <property name="text">
+    <string>TextLabel</string>
    </property>
   </widget>
  </widget>

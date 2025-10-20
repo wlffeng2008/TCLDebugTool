@@ -1,6 +1,8 @@
 #include "DialogToast.h"
+#include "qstyle.h"
 #include "ui_DialogToast.h"
 #include <QScreen>
+#include <QApplication>
 
 DialogToast *toast(QWidget *parent)
 {
@@ -24,6 +26,8 @@ DialogToast::DialogToast(QWidget *parent)
     setWindowFlags(windowFlags() | Qt::FramelessWindowHint | Qt::Popup | Qt::WindowStaysOnTopHint|Qt::Tool | Qt::Dialog);    // 必须设置无边框
     setAttribute(Qt::WA_TranslucentBackground); // 设置背景透明
     setStyleSheet("background-color: rgba(50, 50, 50, 150); border-radius: 10px; color:white;");
+
+    ui->labelIcon->setPixmap(QApplication::style()->standardIcon(QStyle::SP_MessageBoxInformation).pixmap(40,40)) ;
 
     connect(&m_TMShow,&QTimer::timeout,this,[=]{
         m_TMHide.stop() ;

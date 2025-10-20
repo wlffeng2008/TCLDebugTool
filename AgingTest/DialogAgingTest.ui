@@ -37,6 +37,9 @@
    <property name="mouseTracking">
     <bool>false</bool>
    </property>
+   <property name="focusPolicy">
+    <enum>Qt::FocusPolicy::NoFocus</enum>
+   </property>
    <property name="selectionMode">
     <enum>QAbstractItemView::SelectionMode::NoSelection</enum>
    </property>
