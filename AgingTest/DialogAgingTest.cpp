@@ -71,7 +71,7 @@ DialogAgingTest::DialogAgingTest(QWidget *parent)
             m_testItem = row ;
             m_pModel->item(row,8)->setData(1);
             m_pModel->item(row,6)->setText("0") ;
-            m_pModel->item(row,4)->setData(time(nullptr));
+           // m_pModel->item(row,4)->setData(time(nullptr));
             m_pModel->item(row,4)->setText(QDateTime::currentDateTime().toString("yyyy-MM-dd hh:mm:ss")) ;
             m_TMTest.start(10) ;
         }

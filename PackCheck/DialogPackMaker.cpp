@@ -122,17 +122,17 @@ void DialogPackMaker::makeUpdatePack(const QString &strInFile,const QString &str
 
     QString strLog ;
     char szInfile[256]={0};
-    strcpy_s(szInfile,strInFile.toStdString().c_str()) ;
+    strcpy(szInfile,strInFile.toStdString().c_str()) ;
     strLog += QString("输入文件: %1\n").arg(szInfile) ;
 
     char szOutfile[256] = {0};
-    strcpy_s(szOutfile,strOutFile.toStdString().c_str()) ;
+    strcpy(szOutfile,strOutFile.toStdString().c_str()) ;
     if(strlen(szOutfile)<=2)
         strcpy_s(szOutfile,szInfile);
     strLog += QString("输出文件: %1\n").arg(szOutfile);
 
     FILE *file_in = nullptr;
-    fopen_s(&file_in,szInfile, "rb");
+    fopen(&file_in,szInfile, "rb");
     if(!file_in)
     {
         QMessageBox::critical(nullptr,"错误","无法打开源文件，请重试！") ;
@@ -172,7 +172,7 @@ void DialogPackMaker::makeUpdatePack(const QString &strInFile,const QString &str
     char szBuf[1024]={0} ;
     for(i=0; i<headerinfo->sectionNum; i++)
     {
-        sprintf_s(szBuf,"[%x]:file size=(%08x), start=(%08x), end=(%08x), MD5(%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x)\n",
+        sprintf(szBuf,"[%x]:file size=(%08x), start=(%08x), end=(%08x), MD5(%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x)\n",
                headerinfo->section_header[i].mainType,
                headerinfo->section_header[i].size,
                headerinfo->section_header[i].offset,

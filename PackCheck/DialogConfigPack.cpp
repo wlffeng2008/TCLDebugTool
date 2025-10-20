@@ -345,7 +345,7 @@ DialogConfigPack::DialogConfigPack(QWidget *parent)
                 {
                     QByteArray data = QByteArray::fromHex(strLine.toLatin1()) ;
                     // std::reverse(data.begin(),data.end()) ;
-                    strcpy_s(szLine, data.toHex(' ').toUpper().toStdString().c_str()) ;
+                    strcpy(szLine, data.toHex(' ').toUpper().toStdString().c_str()) ;
                 }
                 else
                 {
@@ -356,11 +356,11 @@ DialogConfigPack::DialogConfigPack(QWidget *parent)
                     for(quint32 n=0; n < Bytes; n++)
                     {
                         sprintf(szTmp,"%02X ",b[Bytes - n - 1]) ;
-                        strcat_s(szLine,szTmp) ;
+                        strcat(szLine,szTmp) ;
                     }
                 }
 
-                strcat_s(szLine,"\n") ;
+                strcat(szLine,"\n") ;
                 strBuf += szLine;
             }
             strWhole += strBuf ;

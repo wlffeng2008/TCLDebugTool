@@ -11,8 +11,8 @@
 #include <QStandardItem>
 #include <QStandardItemModel>
 
-#include <windows.h>
-#include <dbt.h>
+//#include <windows.h>
+//#include <dbt.h>
 
 namespace Ui {
 class SerialTestDialog;
