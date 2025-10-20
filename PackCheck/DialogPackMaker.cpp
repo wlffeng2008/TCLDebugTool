@@ -66,7 +66,7 @@ DialogPackMaker::DialogPackMaker(QWidget *parent)
     connect(ui->pushButtonHide,&QPushButton::clicked,this,[=]{ this->hide(); });
     connect(ui->pushButtonGo,&QPushButton::clicked,this,[=]{
         this->makeUpdatePack(ui->lineEditFile1->text().trimmed(),ui->lineEditFile2->text().trimmed());
-        toast(this)->active("升级包打包已完成！");
+        toast()->active("升级包打包已完成！");
     });
 
     connect(ui->pushButtonLoad,&QPushButton::clicked,this,[=]{
@@ -106,7 +106,7 @@ bool DialogPackMaker::eventFilter(QObject*watched,QEvent *event)
             if(m_nCount >= 3)
             {
                 ui->lineEditVersi->setReadOnly(false) ;
-                toast(this)->active("Magic Number 可以修改了！");
+                toast()->active("Magic Number 可以修改了！");
             }
             m_TMSwitch.stop() ;
             m_TMSwitch.start(2000) ;
@@ -132,7 +132,7 @@ void DialogPackMaker::makeUpdatePack(const QString &strInFile,const QString &str
     strLog += QString("输出文件: %1\n").arg(szOutfile);
 
     FILE *file_in = nullptr;
-    fopen(&file_in,szInfile, "rb");
+    fopen_s(&file_in,szInfile, "rb");
     if(!file_in)
     {
         QMessageBox::critical(nullptr,"错误","无法打开源文件，请重试！") ;

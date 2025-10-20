@@ -212,7 +212,7 @@ SerialTestDialog::SerialTestDialog(QWidget *parent)
         m_TMWriteNotify.stop() ;
 
         if(m_bWriteOK)
-            toast(this)->active("数据写入成功！",600) ;
+            toast()->active("数据写入成功！",600) ;
         else
             QMessageBox::critical(nullptr,"提示","数据写入失败！") ;
     });

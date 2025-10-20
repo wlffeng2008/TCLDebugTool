@@ -88,7 +88,7 @@ DialogConfigPack::DialogConfigPack(QWidget *parent)
 
     connect(ui->pushButtonSaveRam,&QPushButton::clicked,this,[=]{
         saveLoadRamCfg() ;
-        toast(this)->active("RAM 配置表已保存！");
+        toast()->active("RAM 配置表已保存！");
     });
 
     saveLoadRamCfg(false) ;
@@ -308,7 +308,7 @@ DialogConfigPack::DialogConfigPack(QWidget *parent)
             QFile RamFile(strFile) ;
             if(!RamFile.open(QIODevice::ReadOnly))
             {
-                toast(this)->active(strFile + " 无法打开！") ;
+                toast()->active(strFile + " 无法打开！") ;
                 return ;
             }
 
@@ -415,7 +415,7 @@ DialogConfigPack::DialogConfigPack(QWidget *parent)
             }
         }
 
-        easyToast("已成功导出Bin文件！",this) ;
+        easyToast("已成功导出Bin文件！") ;
     });
 
     ui->tableViewRam->setMouseTracking(true);

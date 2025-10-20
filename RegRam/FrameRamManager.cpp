@@ -163,7 +163,7 @@ FrameRamManager::FrameRamManager(QWidget *parent) :
 
     connect(&m_TMReadEnd,&QTimer::timeout,this,[=]{
         m_TMReadEnd.stop() ;
-        toast(this)->active("Ram数据 读取 结束！") ;
+        toast()->active("Ram数据 读取 结束！") ;
     });
 
     connect(m_pCOMDlg,&SerialTestDialog::COMModelChanged,this,[=](const QString &strModel){

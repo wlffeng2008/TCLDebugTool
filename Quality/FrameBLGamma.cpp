@@ -112,7 +112,7 @@ FrameBLGamma::FrameBLGamma(QWidget *parent) :
         ui->horizontalSliderPos->setRange(0,nCount-1) ;
         ui->framePanel->update() ;
         ui->tableView->repaint() ;
-        toast(this)->active("Gamma数据读取成功！");
+        toast()->active("Gamma数据读取成功！");
         m_bLoading = false ;
     }) ;
 
@@ -272,7 +272,7 @@ void FrameBLGamma::on_pushButtonSave_clicked()
     }
     file.close() ;
 
-    toast(this)->active("Gamma数据保存完毕！") ;
+    toast()->active("Gamma数据保存完毕！") ;
     //QMessageBox::information(this,"提示","Gamma数据保存完毕！") ;
 }
 

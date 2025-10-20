@@ -91,7 +91,7 @@ FrameGenGammaEdit::FrameGenGammaEdit(QWidget *parent)
         if(pSender != this) return;
 
         QTimer::singleShot(100,this,[=]{
-                toast(this)->active("CT Gamma数据 写入 完成！") ;
+                toast()->active("CT Gamma数据 写入 完成！") ;
         }) ;
     });
 
@@ -112,7 +112,7 @@ FrameGenGammaEdit::FrameGenGammaEdit(QWidget *parent)
         m_bLoading = false ;
 
         QTimer::singleShot(100,this,[=]{
-            toast(this)->active("CT Gamma数据 读取 完成！") ;
+            toast()->active("CT Gamma数据 读取 完成！") ;
         }) ;
 
     }) ;

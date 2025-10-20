@@ -590,7 +590,7 @@ void  FrameControl::doReadReg()
     int nCount = g_Reads.count() ;
     if(nCount == 0)
     {
-        toast(this)->active("读取完毕！") ;
+        toast()->active("读取完毕！") ;
         m_bReading = false ;
         return ;
     }

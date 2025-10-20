@@ -59,7 +59,7 @@ FramePQGamma::FramePQGamma(QWidget *parent)
             doWrite(2) ;
 
         if(m_nCurType == 2)
-            toast(this)->active("PQ Gamma数据 写入 完成！") ;
+            toast()->active("PQ Gamma数据 写入 完成！") ;
         }) ;
     });
 
@@ -86,7 +86,7 @@ FramePQGamma::FramePQGamma(QWidget *parent)
                 doRead(2) ;
 
             if(m_nCurType == 2)
-                toast(this)->active("PQ Gamma数据 读取 完成！") ;
+                toast()->active("PQ Gamma数据 读取 完成！") ;
         }) ;
 
     }) ;
