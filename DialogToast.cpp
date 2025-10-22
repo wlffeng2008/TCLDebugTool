@@ -25,6 +25,7 @@ EasyToast::EasyToast(QWidget *parent)
     setWindowFlags(windowFlags() | Qt::FramelessWindowHint | Qt::Popup | Qt::WindowStaysOnTopHint|Qt::Tool | Qt::Dialog);    // 必须设置无边框
     setAttribute(Qt::WA_TranslucentBackground); // 设置背景透明
     setStyleSheet("QFrame#frame{background-color: rgba(50, 50, 50, 150); border-radius: 10px; color:white;}");
+    ui->label->setStyleSheet("QLabel{color:white;}");
 
     pmInformation=QApplication::style()->standardIcon(QStyle::SP_MessageBoxInformation).pixmap(40,40);
     pmQuestion=QApplication::style()->standardIcon(QStyle::SP_MessageBoxQuestion).pixmap(40,40);

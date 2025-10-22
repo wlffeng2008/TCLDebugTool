@@ -16,19 +16,18 @@ int main(int argc, char *argv[])
     //QApplication::setStyle("Fusion");
     a.setStyleSheet(
     R"(
-        QTableView{ border: 1px solid gray; gridline-color: transparent;  background-color: rgb(226, 249, 255) !important; gridline-color: gray;}
-        QTableView::Item{padding-left:2px;  border-top: 0px solid gray; border-bottom: 1px solid transparent;border-right: 0px solid gray;}
-        QTableView::Item::selected{ background-color: #a0bb9e !important; color:white; }
+        QTableView{ border: 1px solid gray; background-color: rgb(226, 240, 255) ; gridline-color: gray;}
+        QTableView::Item{padding-left:2px; background-color: rgb(226, 240, 255) ; border-top: 0px solid gray; border-bottom: 1px solid transparent;border-right: 0px solid gray;}
+        QTableView::Item::selected{ background-color: #a0bb9e ; color:white; }
         QTableView QTableCornerButton::section { background-color: skyblue ; min-width: 32px; border-top: 0px solid gray; border-bottom: 1px solid gray; border-left: 0px solid gray; border-right: 1px solid gray; }
 
-        QTableView QHeaderView::section{background-color:skyblue;}
-        QTableView QHeaderView{background-color:skyblue;}
-        QHeaderView::section:horizontal{  padding-left: 2px; border-top: 0px solid gray; border-bottom: 1px solid gray; border-right: 1px solid gray; font-weight: bold;}
-        QHeaderView::section:vertical{  padding-left: 2px; min-width: 36px; border-top: 0px solid gray; border-bottom: 1px solid gray; border-left: 0px solid gray; border-right: 1px solid gray;}
+        QHeaderView::section{ background-color:skyblue;}
+        QHeaderView::section:horizontal{ padding-left: 2px; border-top: 0px solid gray; border-bottom: 1px solid gray; border-right: 1px solid gray; font-weight: bold;}
+        QHeaderView::section:vertical{ padding-left: 2px; text-align: right; min-width: 36px; border-top: 0px solid gray; border-bottom: 1px solid gray; border-left: 0px solid gray; border-right: 1px solid gray;}
+
         QTableView::indicator { width: 18px; height: 18px; }
         QTableView::indicator:checked { image: url(:/images/BoxChecked.png); }
         QTableView::indicator:unchecked { image: url(:/images/BoxUncheck.png); }
-        QHeaderView::section:vertical{ text-align: right;}
 
         QLineEdit {border: 1px solid gray; border-radius: 4px; }
         QLineEdit:focus{ border: 1px solid #50b7c1; border-radius: 4px;  background-color: rgb(230, 240, 255);}
@@ -60,10 +59,10 @@ int main(int argc, char *argv[])
         QSlider::handle:pressed { background: #E0E0E0; border-color: #2D7FDD; }
 
         QPushButton {
-                background-color: #2D7FDD;
-                border-radius: 8px;
-                color: white;
                 border: 1px solid #6C9F50;
+                background-color: #2D7FDD;
+                color: white;
+                border-radius: 8px;
                 padding: 2px 2px;
                 min-width: 60px;
                 min-height: 16px; }
@@ -82,37 +81,15 @@ int main(int argc, char *argv[])
         QRadioButton::indicator {
             width: 14px;
             height: 14px;
-            border: 2px solid #999999;
+            border: 2px solid gray;
             border-radius: 8px;
+            background-color: white;
         }
 
-        QRadioButton::indicator:unchecked { background: #ffffff; }
-        QRadioButton::indicator:unchecked:hover { border-color: #666666; background: #f0f0f0; }
+        QRadioButton::indicator:checked { border: 2px solid blue; background-color: green;}
 
-        QRadioButton::indicator:checked {
-            border: 2px solid #0085FF;
-            background: qradialgradient(
-                cx:0.5, cy:0.5, radius:0.4,
-                fx:0.5, fy:0.5,
-                stop:0 #0085FF, stop:1 white
-            );
-            color: #0085FF;
-        }
-
-        QRadioButton::indicator:checked:hover {
-            border-color: #0066CC;
-            background: qradialgradient(
-                cx:0.5, cy:0.5, radius:0.4,
-                fx:0.5, fy:0.5,
-                stop:0 #0066CC, stop:1 white
-            );
-        }
-
-        QRadioButton::indicator:pressed { border-color: #004499; }
         QRadioButton:disabled { color: #cccccc; }
-        QRadioButton:checked {  color: #0085FF; }
         QRadioButton::indicator:disabled { border: 2px solid #dddddd; background: white; }
-
 
         QCheckBox { spacing: 5px; color: #333; }
         QCheckBox::indicator { width: 14px; height: 14px; }
@@ -125,8 +102,8 @@ int main(int argc, char *argv[])
         }
 
         QCheckBox::indicator:hover { border-color: #666; }
-        QCheckBox:disabled { color: #AAA; }
         QCheckBox::indicator:disabled { background: #EEE; }
+        QCheckBox:disabled { color: #AAA; }
 
         QComboBox {
             border: 1px solid gray;

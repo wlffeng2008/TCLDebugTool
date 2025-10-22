@@ -5,6 +5,8 @@
 #include <QTreeWidgetItem>
 #include <QPainter>
 #include <QPropertyAnimation>
+#include <QApplication>
+#include <QCoreApplication>
 #include <QDebug>
 #include <qglobal.h>
 #include <QSettings>
@@ -60,6 +62,60 @@ MainWindow::MainWindow(QWidget *parent)
         // if (!xlsx.saveAs("D:/WriteExcel1.csv")) {
         //     qDebug() << "[WriteExcel1] failed to save excel file";
         // }
+    }
+
+    {
+        QImage image(18, 18, QImage::Format_ARGB32);
+        image.fill(Qt::transparent);
+        QPainter painter(&image);
+
+        painter.setRenderHint(QPainter::Antialiasing);
+        QRect rect = QRect(0,0,18,18).adjusted(1,1,-1,-1);
+
+        int nPW = 2 ;
+        int nRadius = rect.height()/2 ;
+        if(nRadius>10)
+            nRadius = 10 ;
+        while(rect.height()>nRadius * 2)
+            rect.adjust(1,1,-1,-1);
+
+        QString strChecked = QCoreApplication::applicationDirPath() + "/radioChecked.png" ;
+        QString strUncheck = QCoreApplication::applicationDirPath() + "/radioUncheck.png" ;
+
+        painter.setPen(QPen(QBrush(0x6329B6),nPW));
+        painter.drawArc(rect,0,360*16);
+
+        painter.setPen(Qt::red);
+        painter.setBrush(Qt::red);
+        painter.drawEllipse(rect.center()+QPoint(1,1),nRadius-nPW*2,nRadius-nPW*2);
+        image.save(strChecked) ;
+
+        image.fill(Qt::transparent);
+        painter.setPen(QPen(QBrush(Qt::gray),nPW));
+        painter.setBrush(Qt::NoBrush);
+        painter.drawArc(rect,0,360*16);
+        image.save(strUncheck) ;
+
+        QString stryle = QString(R"(
+            QRadioButton::indicator {
+                width: 18px;
+                height: 18px;
+                border: none;
+                border-radius: 9px;
+                background-color: #E0E0E0;
+                image: url(%1); }
+
+            QRadioButton::indicator:checked {
+                width: 18px;
+                height: 18px;
+                background: transparent;
+                border: none;
+                border-radius: 0px;
+                image: url(%2);}
+
+        )").arg(strUncheck,strChecked) ;
+
+        qApp->setStyleSheet(qApp->styleSheet() + stryle);
     }
 
     {
