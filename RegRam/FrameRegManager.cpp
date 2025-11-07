@@ -627,14 +627,7 @@ void FrameRegManager::on_pushButtonSaveAs_clicked()
         return ;
     QString strOldFile = m_strCurFile ;
     m_strCurFile = strFile ;
-    if(SaveDataToFile())
-    {
-        QMessageBox::information(this,"提示","Reg数据保存成功！\n" + m_strCurFile) ;
-    }
-    else
-    {
-        QMessageBox::warning(this,"提示","文件创建失败，Reg数据未保存！") ;
-    }
+    on_pushButtonSave_clicked();
     m_strCurFile = strOldFile ;
 }
 
@@ -712,10 +705,6 @@ void FrameRegManager::on_pushButtonRead_clicked()
     QModelIndexList selIndexs = ui->tableView->selectionModel()->selectedRows() ;
     if(selIndexs.isEmpty())
     {
-        // auto nRet = QMessageBox::question(this,"提示","当前未选中数据项，要读取列表中所有数据吗？") ;
-        // if(nRet != QMessageBox::Yes)
-        //     return ;
-
         int nCount = m_pTVModel->rowCount() ;
         for (int i = 0; i<nCount; i++)
         {
@@ -800,10 +789,6 @@ void FrameRegManager::on_pushButtonWrite_clicked()
     QModelIndexList selIndexs = ui->tableView->selectionModel()->selectedRows() ;
     if(selIndexs.isEmpty())
     {
-        // auto nRet = QMessageBox::question(this,"提示","当前未选中数据项，要写入列表中所有数据吗？") ;
-        // if(nRet != QMessageBox::Yes)
-        //     return ;
-
         int nCount = m_pTVModel->rowCount() ;
         for (int i = 0; i<nCount; i++)
             m_selectRows.push_back(i) ;
@@ -830,6 +815,7 @@ void FrameRegManager::buildFileName()
 void FrameRegManager::on_comboBoxReg_currentIndexChanged(int index)
 {
     Q_UNUSED(index)
+    SaveDataToFile();
 
     buildFileName() ;
     LoadDataFromFile() ;
@@ -856,8 +842,8 @@ bool FrameRegManager::eventFilter(QObject *watched, QEvent *event)
             int row = ui->tableView->rowAt(pos.y() - hs.height()) ;
             int col = ui->tableView->columnAt(pos.x() - vs.width());
 
-            qDebug() << hs << vs;
-            qDebug() << row << col;
+            // qDebug() << hs << vs;
+            // qDebug() << row << col;
 
             if(col == 7)
             {
@@ -912,6 +898,7 @@ bool FrameRegManager::eventFilter(QObject *watched, QEvent *event)
 
 void FrameRegManager::on_checkBoxShowRegEx_clicked()
 {
+    SaveDataToFile();
     bool bShowEx = ui->checkBoxShowRegEx->isChecked() ;
     m_isCustumReg = bShowEx ;
     ui->comboBoxReg->setVisible(!bShowEx) ;
@@ -925,6 +912,8 @@ void FrameRegManager::on_comboBoxRegEx_currentIndexChanged(int index)
 {
     Q_UNUSED(index)
 
+    SaveDataToFile();
+
     buildFileName() ;
     LoadDataFromFile() ;
 }
@@ -933,6 +922,9 @@ void FrameRegManager::on_pushButtonClear_clicked()
 {
     auto nRet = QMessageBox::warning(this,"提示","确认要清空列表吗？",QMessageBox::Yes|QMessageBox::No);
     if(nRet == QMessageBox::Yes)
+    {
         m_pTVModel->setRowCount(0) ;
+        SaveDataToFile() ;
+    }
 }
 
