@@ -178,19 +178,40 @@ FrameBLPostProc::FrameBLPostProc(QWidget *parent)
         }
     });
 
-    connect(ui->buttonGroup1, static_cast<void(QButtonGroup::*)(int)>(&QButtonGroup::idClicked), this,[=](int nIndex){
+
+#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+    connect(ui->buttonGroup1, &QButtonGroup::idClicked, this,[=](int nIndex){
         Q_UNUSED(nIndex)
         on_pushButtonWriteM_clicked() ;
     });
-    connect(ui->buttonGroup2, static_cast<void(QButtonGroup::*)(int)>(&QButtonGroup::idClicked), this,[=](int nIndex){
+
+    connect(ui->buttonGroup2, &QButtonGroup::idClicked, this,[=](int nIndex){
         Q_UNUSED(nIndex)
         on_checkBoxBLPostProc_clicked();
     });
 
-    connect(ui->buttonGroup3, static_cast<void(QButtonGroup::*)(int)>(&QButtonGroup::idClicked), this,[=](int nIndex){
+    connect(ui->buttonGroup3, &QButtonGroup::idClicked, this,[=](int nIndex){
         Q_UNUSED(nIndex)
         on_pushButtonWriteGM_clicked();
     });
+#else
+
+    connect(ui->buttonGroup1, static_cast<void(QButtonGroup::*)(int)>(&QButtonGroup::buttonClicked), this,[=](int nIndex){
+        Q_UNUSED(nIndex)
+        on_pushButtonWriteM_clicked() ;
+    });
+
+    connect(ui->buttonGroup2, static_cast<void(QButtonGroup::*)(int)>(&QButtonGroup::buttonClicked), this,[=](int nIndex){
+        Q_UNUSED(nIndex)
+        on_checkBoxBLPostProc_clicked();
+    });
+
+    connect(ui->buttonGroup3, static_cast<void(QButtonGroup::*)(int)>(&QButtonGroup::buttonClicked), this,[=](int nIndex){
+        Q_UNUSED(nIndex)
+        on_pushButtonWriteGM_clicked();
+    });
+
+#endif
 
     connect(ui->checkBoxGMEnable,&QCheckBox::clicked,this,[=](bool checked){
         m_pCOMDlg->sendSwitch(0x109E,checked,this);

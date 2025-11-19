@@ -197,7 +197,11 @@ FramePixelCompensation::FramePixelCompensation(QWidget *parent) :
 
     QTimer::singleShot(500,this,[=](){ m_bAutoSEnd = true ;}) ;
 
-    connect(ui->buttonGroup1, static_cast<void(QButtonGroup::*)(int)>(&QButtonGroup::idClicked), this,[=](int nIndex){
+#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+    connect(ui->buttonGroup1, &QButtonGroup::idClicked, this,[=](int nIndex){
+#else
+    connect(ui->buttonGroup1, static_cast<void(QButtonGroup::*)(int)>(&QButtonGroup::buttonClicked), this,[=](int nIndex){
+#endif
         Q_UNUSED(nIndex)
         on_pushButtonWriteM_clicked() ;
     });

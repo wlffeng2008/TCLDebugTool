@@ -59,13 +59,20 @@ FrameDemo::FrameDemo(QWidget *parent) :
             ui->frame->setDisabled(false);
         }
     });
-
-    connect(ui->buttonGroup1, static_cast<void(QButtonGroup::*)(int)>(&QButtonGroup::idClicked), this,[=](int nIndex){
+#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+    connect(ui->buttonGroup1, &QButtonGroup::idClicked, this,[=](int nIndex){
+#else
+    connect(ui->buttonGroup1, static_cast<void(QButtonGroup::*)(int)>(&QButtonGroup::buttonClicked), this,[=](int nIndex){
+#endif
         m_pCOMDlg->sendInt8(0x1052,abs(nIndex) - 2,this);
         m_pCOMDlg->sendInt8(0x1252,abs(nIndex) - 2,this);
     });
 
-    connect(ui->buttonGroup2, static_cast<void(QButtonGroup::*)(int)>(&QButtonGroup::idClicked), this,[=](int nIndex){
+#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+    connect(ui->buttonGroup2, &QButtonGroup::idClicked, this,[=](int nIndex){
+#else
+    connect(ui->buttonGroup2, static_cast<void(QButtonGroup::*)(int)>(&QButtonGroup::buttonClicked), this,[=](int nIndex){
+#endif
         m_pCOMDlg->sendInt8(0x160E,abs(nIndex) - 2,this);
     });
 

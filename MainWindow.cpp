@@ -271,8 +271,11 @@ void MainWindow::closeEvent(QCloseEvent *event)
     QMainWindow::closeEvent(event) ;
     exit(0) ;
 }
-
+#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
 bool MainWindow::nativeEvent(const QByteArray &eventType, void *message, qintptr *result)
+#else
+bool MainWindow::nativeEvent(const QByteArray &eventType, void *message, long *result)
+#endif
 {
     MSG* msg = reinterpret_cast<MSG*>(message);
     if (msg->message == WM_DEVICECHANGE)

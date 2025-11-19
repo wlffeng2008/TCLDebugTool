@@ -142,7 +142,11 @@ FramePQGamma::FramePQGamma(QWidget *parent)
         m_pModel->item(m_nEditX,getCol())->setText(QString::number(value)) ;
     });
 
+#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
     connect(ui->buttonGroup, &QButtonGroup::idClicked, this,[=](int nIndex){
+#else
+    connect(ui->buttonGroup, static_cast<void(QButtonGroup::*)(int)>(&QButtonGroup::buttonClicked), this,[=](int nIndex){
+#endif
         Q_UNUSED(nIndex)
         ui->vSliderY->setValue(m_pModel->item(m_nEditX,getCol())->text().toInt()) ;
         update() ;

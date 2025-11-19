@@ -821,7 +821,11 @@ void SerialTestDialog::on_checkBoxHexData_clicked()
 }
 
 
+#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
 bool SerialTestDialog::nativeEvent(const QByteArray &eventType, void *message, qintptr *result)
+#else
+bool SerialTestDialog::nativeEvent(const QByteArray &eventType, void *message, long *result)
+#endif
 {
     MSG* msg = reinterpret_cast<MSG*>(message);
     if (msg->message == WM_DEVICECHANGE)

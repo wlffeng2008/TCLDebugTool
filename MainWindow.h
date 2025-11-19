@@ -26,8 +26,12 @@ public:
 protected:
     void paintEvent(QPaintEvent *pEvt) override ;
     bool eventFilter(QObject *watched, QEvent *event) override;
-    bool nativeEvent(const QByteArray &eventType, void *message, qintptr *result)  override;
     void closeEvent(QCloseEvent *event) override ;
+#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+    bool nativeEvent(const QByteArray &eventType, void *message, qintptr *result)  override;
+#else
+    bool nativeEvent(const QByteArray &eventType, void *message, long *result)  override;
+#endif
 
 private slots:
     void on_pushButtonSerial_clicked();

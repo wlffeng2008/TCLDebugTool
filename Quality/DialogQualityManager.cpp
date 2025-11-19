@@ -25,7 +25,11 @@ DialogQualityManager::DialogQualityManager(QWidget *parent) :
 
     showFrame(0);
 
-    connect(ui->buttonGroup, static_cast<void(QButtonGroup::*)(int)>(&QButtonGroup::idClicked), this,[=](int nIndex){
+#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+    connect(ui->buttonGroup, &QButtonGroup::idClicked, this,[=](int nIndex){
+#else
+    connect(ui->buttonGroup, static_cast<void(QButtonGroup::*)(int)>(&QButtonGroup::buttonClicked), this,[=](int nIndex){
+#endif
         if(nIndex <= -2)
             showFrame(abs(nIndex) - 2);
         else

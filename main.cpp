@@ -174,7 +174,11 @@ padding 3px ;
 
     QLocale::setDefault(QLocale(QLocale::Chinese,QLocale::China)) ;
     QTranslator translator ;
+#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
     bool bLoad = translator.load("qt_zh_TW.qm", QLibraryInfo::path(QLibraryInfo::TranslationsPath)) ;
+#else
+    bool bLoad = translator.load("qt_zh_TW.qm", QLibraryInfo::location(QLibraryInfo::TranslationsPath)) ;
+#endif
     if(bLoad)
     {
         qDebug() << "installTranslator";
