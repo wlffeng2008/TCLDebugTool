@@ -172,18 +172,22 @@ padding 3px ;
 */
     //tcl_log::LogInit() ;
 
-    QLocale::setDefault(QLocale(QLocale::Chinese,QLocale::China)) ;
-    QTranslator translator ;
+    QLocale::setDefault(QLocale(QLocale::Chinese,QLocale::China));
+
+    QTranslator translatorA ;
+    QTranslator translatorB ;
+
 #if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
-    bool bLoad = translator.load("qt_zh_TW.qm", QLibraryInfo::path(QLibraryInfo::TranslationsPath)) ;
+    translatorA.load("qt_zh_CN.qm", QLibraryInfo::path(QLibraryInfo::TranslationsPath));
+    translatorB.load("qtbase_zh_CN.qm", QLibraryInfo::path(QLibraryInfo::TranslationsPath));
 #else
-    bool bLoad = translator.load("qt_zh_TW.qm", QLibraryInfo::location(QLibraryInfo::TranslationsPath)) ;
+    translatorA.load("qt_zh_CN.qm", QLibraryInfo::location(QLibraryInfo::TranslationsPath));
+    translatorB.load("qtbase_zh_CN.qm", QLibraryInfo::location(QLibraryInfo::TranslationsPath));
 #endif
-    if(bLoad)
-    {
-        qDebug() << "installTranslator";
-        a.installTranslator(&translator) ;
-    }
+
+    qDebug() << "installTranslator";
+    a.installTranslator(&translatorA) ;
+    a.installTranslator(&translatorB) ;
 
     MainWindow w;
     w.show();
