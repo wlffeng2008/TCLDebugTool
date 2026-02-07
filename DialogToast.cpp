@@ -73,8 +73,8 @@ void EasyToast::question(const QString&text,int durtion)
 
 void EasyToast::active(const QString&text, int type, int durtion)
 {
-    m_TMShow.stop() ;
-    m_TMHide.stop() ;
+    m_TMShow.stop();
+    m_TMHide.stop();
 
     switch(type)
     {
