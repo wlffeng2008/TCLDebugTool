@@ -99,12 +99,12 @@ SerialTestDialog::SerialTestDialog(QWidget *parent)
     setWindowFlags((windowFlags() | Qt::MSWindowsFixedSizeDialogHint) & ~Qt::WindowContextHelpButtonHint);
     g_pCOMDlg = this ;
 
-    g_set = new QSettings(QCoreApplication::applicationDirPath() + "/DebugToolCOM.ini",QSettings::IniFormat) ;
-    ui->pushButtonLog->setIcon(QApplication::style()->standardIcon(QStyle::SP_MessageBoxInformation)) ;
+    g_set = new QSettings(QCoreApplication::applicationDirPath() + "/DebugToolCOM.ini",QSettings::IniFormat);
+    ui->pushButtonLog->setIcon(QApplication::style()->standardIcon(QStyle::SP_MessageBoxInformation));
 
-    m_pLogDlg = new DialogLogView(nullptr) ;
+    m_pLogDlg = new DialogLogView(nullptr);
 
-    m_pCOM = new GenComport(this) ;
+    m_pCOM = new GenComport(this);
 
     m_model = new QStandardItemModel();
     m_model->setHorizontalHeaderLabels({"串口命令列表", "备注"});
@@ -113,16 +113,16 @@ SerialTestDialog::SerialTestDialog(QWidget *parent)
     QHeaderView *header = ui->tableView->horizontalHeader();
     header->setSectionResizeMode(QHeaderView::Stretch);
     header->setSectionResizeMode(1,QHeaderView::Fixed);
-    header->resizeSection(1,100) ;
+    header->resizeSection(1,100);
 
     ui->tableView->setShowGrid(false);
 
-    LoadCmdFile(g_set->value("lastFile").toString().trimmed()) ;
+    LoadCmdFile(g_set->value("lastFile").toString().trimmed());
 
     connect(ui->tableView,&QAbstractItemView::clicked,this,[=](const QModelIndex&index){
         m_nCurRow = index.row() ;
         QStandardItem *item =  m_model->item(index.row());
-        ui->textEditCommand->setText(item->text().trimmed()) ;
+        ui->textEditCommand->setText(item->text().trimmed());
     });
 
     QItemSelectionModel *selectionModel = ui->tableView->selectionModel();
@@ -132,7 +132,7 @@ SerialTestDialog::SerialTestDialog(QWidget *parent)
         QModelIndexList selectedIndexes = selected.indexes();
         QModelIndex&index = selectedIndexes[0] ;
         QStandardItem *item =  m_model->item(index.row());
-        ui->textEditCommand->setText(item->text().trimmed()) ;
+        ui->textEditCommand->setText(item->text().trimmed());
 
         m_nCurRow = index.row() ;
     });
@@ -212,26 +212,26 @@ SerialTestDialog::SerialTestDialog(QWidget *parent)
         m_TMWriteNotify.stop() ;
 
         if(m_bWriteOK)
-            toast()->active("数据写入成功！",600) ;
+            toast()->active("数据写入成功！",600);
         else
-            QMessageBox::critical(nullptr,"提示","数据写入失败！") ;
+            QMessageBox::critical(nullptr,"提示","数据写入失败！");
     });
 
     connect(&m_ReplyTM,&QTimer::timeout,this,[=](){
         m_ReplyTM.stop() ;
-        m_pLogDlg->pushLogText("设备应答超时!") ;
+        m_pLogDlg->pushLogText("设备应答超时!");
         if(ui->checkBoxReply->isChecked())
         {
             emit COMReplyTimeout();
-            static QEvent Notify((QEvent::Type)(QEvent::User+1)) ;
+            static QEvent Notify((QEvent::Type)(QEvent::User+1));
 
-            if(m_pSender) m_pSender->eventFilter(nullptr,&Notify) ;
-            QMessageBox::critical(nullptr,"提示","设备应答超时!") ;
+            if(m_pSender) m_pSender->eventFilter(nullptr,&Notify);
+            QMessageBox::critical(nullptr,"提示","设备应答超时!");
         }
     });
 
-    QString strCOM  = g_set->value("lastCOM","COM1").toString().trimmed() ;
-    QString strBaud = g_set->value("lastBaud","115200").toString().trimmed() ;
+    QString strCOM  = g_set->value("lastCOM","COM1").toString().trimmed();
+    QString strBaud = g_set->value("lastBaud","115200").toString().trimmed();
     QString strData = g_set->value("lastData","8").toString().trimmed() ;
     int nStop       = g_set->value("lastStop",0).toInt() ;
     int nParity     = g_set->value("lastParity",0).toInt()  ;
@@ -267,7 +267,7 @@ SerialTestDialog::SerialTestDialog(QWidget *parent)
 
     on_pushButtonScan_clicked();
     on_radioButtonRegRead_clicked();
-    updateCOMStatus() ;
+    updateCOMStatus();
 
     connect(ui->checkBoxReply,&QCheckBox::clicked,this,[=]{ saveSetting(); });
     connect(ui->checkBoxWriteNotify,&QCheckBox::clicked,this,[=]{ saveSetting(); });
